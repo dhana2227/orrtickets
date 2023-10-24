@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Webpage Title</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+ 
+        /* Basic CSS styles */
+        body {
+            position: relative;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url("\\\\pfbafs\\BSC\\Taxroll_Data\\ORR_module_project\\Web\\Images\\home.jpg");
+            background-size: auto 70%;
+            background-position: right center;
+            background-repeat: no-repeat;
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between; /* Space between elements horizontally */
+            align-items: center; /* Center the content vertically */
+            padding: 5px;
+            background-color: #333;
+        }
+
+        #search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        #search-bar input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            background-color: #444;
+            color: #fff;
+            transition: width 0.5s;
+        }
+
+        #search-bar input[type="text"]:focus {
+            background-color: #555;
+        }
+
+        #logo {
+            margin-left: 0%;
+            max-width: 10%;
+            max-height: 0%;
+            color: #e4d8d8;
+            border-radius: 10px;
+            padding: 0%;
+ 
+
+         /* Set your logo's preferred width */
+            /* You can add animation here if needed */
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to the logo container */
+        #logo {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        #menu-icons {
+            display: flex;
+            align-items: center;
+            gap: 30px; /* Space between icons */
+         }
+        #menu-icons a {
+            color: #fff; /* Change the icon color here */
+        }
+      
+
+        #container {
+            display: flex;
+            margin: 0 auto; /* Center the content horizontally */
+            max-width: 1200px; /* Set a maximum width for the content */
+            
+        }
+
+        #menu {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+            height: 100vh; /* Set the sidebar to full height */
+            box-shadow: 100px 700px 1000px rgba(204, 23, 23, 0.1);
+ 
+            
+        }
+
+         
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            font: size 12px; ;
+         }
+
+        #menu li {
+            padding: 15px;
+            position: relative;
+        }
+
+        #menu a {
+            color: #dbcbcb;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            border-radius: 10px;
+            padding: 10px ;
+        }
+
+        #menu a:hover {
+            background-color: #555;
+        }
+
+        /* Dropdown menu styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: #444;
+            min-width: 200px;
+            min-height: 40px;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Submenu styles */
+        .submenu {
+            position: relative;
+        }
+
+        .submenu-content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: #444;
+            min-width: 200px;
+            min-height: 40px;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+
+        }
+        .submenu:hover .submenu-content {
+            display: block;
+        }
+        /*2nd sub menu*/
+        .submenu-one {
+            position: relative;
+        }
+
+        .submenu-content-one {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: #444;
+            min-width: 200px;
+            min-height: 40px;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+
+        }
+        .submenu-one:hover .submenu-content-one{
+            display: block;
+        }
+         
+     
+        .MenuBar{
+            font-size: 20px;
+        }
+    
+    </style>
+</head>
+<body>
+   <!-- Search bar with notification bell icon -->
+   <div id="header">
+    <img id="logo" src="\\\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Images\logo.jpg" alt="Logo">
+    <div id="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+    <div id="menu-icons">
+        <a href="#"><i class="fa-solid fa-house"></i></a> <!-- Help icon -->
+        <a href="#"><i class="fa-sharp fa-solid fa-bell"></i></a> <!-- Help icon -->
+        <a href="#"><i class="fa-solid fa-gears"></i></i></a> <!-- Setting icon -->
+         <a href="#"><i class="fas fa-sign-out-alt"></i></a> <!-- Logout icon -->
+    </div>
+</div>
+
+
+    <!-- Left-side menu with image -->
+    <div id="menu">
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-bars MenuBar"></i> MenuBar</a></li>
+            <!-- Ticket tab with submenu -->
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-database" ></i> Dashboard </a>
+                <div class="dropdown-content">
+                    <a href="\\\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Images\Dashtaxrolloption1.jpg"><i class="fas fa-folder"></i> County Analysis</a>
+                    <a href="\\\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Images\DashORR.jpg"><i class="fas fa-folder"></i> ORR</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-ticket-alt"></i> ORR/Tickets</a>
+                <div class="dropdown-content">
+                        <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Newticket.html"><i class="fa-solid fa-plus"></i> New Ticket</a>
+                        <div class="submenu">
+                        <a href="#"><i class="fas fa-reply"></i> Ticket history</a>
+                        <div class="submenu-content">
+			                <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\open.html"><i class="fas fa-pause-circle"></i> Open</a>
+                            <div class="submenu-one">
+                            <a href="#"><i class="fas fa-check-circle"></i> Responded</a>
+                            <div class="submenu-content-one" >
+                                <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\completed.html"><i class="fas fa-check-circle"></i> Closed</a>
+                                <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\hold.html"><i class="fas fa-pause-circle"></i> Hold</a>
+                                <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Partillyrecived.html"><i class="fas fa-minus-circle"></i> Partially received</a>
+                            </div>
+                        </div>        
+                            <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\rejected.html"><i class="fas fa-minus-circle"></i> Rejected</a>
+                            <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\all.html" id="show-table"><i class="fas fa-plus-circle"></i> All tickets</a>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <li><a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Contacts.html"><i class="fas fa-address-book"></i> Contacts</a></li>
+                <!-- Data tab with dropdown menu -->
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-database"></i> Data</a>
+                    <div class="dropdown-content">
+                        <a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\reports1.html"><i class="fas fa-folder"></i> Taxroll Reports</a>
+                    </div>
+                </li>
+                <!-- Calendar sub-menu -->
+                <li><a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\Calender.html"><i class="fas fa-calendar"></i> Calendar</a></li>
+                <li><a href="\\pfbafs\BSC\Taxroll_Data\ORR_module_project\Web\taxroll.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="#"><i class="fas fa-cogs"></i> Admin/Settings</a></li>
+            </ul>
+        </div>
+        <!-- Table container for All-Ticket Details (Initially hidden) -->
+         
+           
+
+        <!-- Rest of your content goes here -->
+        <!-- Add your webpage content here -->
+
+        <!-- JavaScript to show/hide the table when "All-Ticket Details" is clicked -->
+        
+    </body>
+</html>
