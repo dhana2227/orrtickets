@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        /* Body style */
+        body {
+            background-color: #f4f4f4; /* Background color for the entire page */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container for the dashboard content */
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* Background color for the dashboard content */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Box shadow for a card-like appearance */
+        }
+
+        /* Styles for headings and text */
+        h1 {
+            color: #333; /* Heading text color */
+        }
+
+        p {
+            color: #555; /* Paragraph text color */
+        }
+
+        /* Right-side dropdown menu styles */
+        #dropdown-menu {
+            float: right;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff; /* Background color for the menu */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Box shadow for a card-like appearance */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333; /* Label text color */
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; /* Border for select elements */
+        }
+
+        /* Styles for pie charts container */
+        .chart-section {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        /* Button styles */
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <!-- Right-side dropdown menu for state, county, year, and property type -->
+    <div id="dropdown-menu">
+        <h2>Filter Options</h2>
+        <label for="state">State:</label>
+        <select id="state">
+            <option value="state1">TX</option>
+            <option value="state2">IL</option>
+            <option value="state3">GA</option>
+            <option value="state4">AR</option>
+            <option value="state5">FL</option>
+            <!-- Add more state options as needed -->
+        </select>
+
+        <label for="county">County:</label>
+        <select id="county">
+            <option value="county1">HCAD</option>
+            <option value="county2">FBCAD</option>
+            <option value="county3">MCAD</option>
+            <option value="county4">WCAD</option>
+            <option value="county5">Dallas</option>
+            <!-- Add more county options as needed -->
+        </select>
+
+        <label for="year">Year:</label>
+        <select id="year">
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <!-- Add more year options as needed -->
+        </select>
+
+        <label for="property-type">Property Type:</label>
+        <select id="property-type">
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <!-- Add more property type options as needed -->
+        </select>
+
+        <!-- 3D View Button -->
+        <button class="btn" onclick="show3DView()">3D View</button>
+    </div>
+
+    <!-- Dashboard content goes here -->
+    <div class="dashboard-container">
+        <h1>Welcome to the Dashboard</h1>
+        <p>This is your new dashboard with customizable content.</p>
+
+        <!-- Taxroll pie chart (smaller size) -->
+        <div class="chart-section">
+            <h2>Taxroll Pie Chart</h2>
+            <canvas id="taxrollPieChart" width="150" height="150"></canvas>
+        </div>
+
+        <!-- OCA pie chart (smaller size) -->
+        <div class="chart-section">
+            <h2>OCA Pie Chart</h2>
+            <canvas id="ocaPieChart" width="150" height="150"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Data for the Taxroll pie chart
+        var taxrollData = {
+            labels: ['Category 1', 'Category 2', 'Category 3'],
+            datasets: [{
+                data: [30, 40, 20], // Replace with your Taxroll data values
+                backgroundColor: ['red', 'green', 'blue'], // Colors for chart segments
+            }]
+        };
+
+        // Data for the OCA pie chart
+        var ocaData = {
+            labels: ['Category A', 'Category B', 'Category C'],
+            datasets: [{
+                data: [25, 35, 40], // Replace with your OCA data values
+                backgroundColor: ['orange', 'purple', 'pink'], // Colors for chart segments
+            }]
+        };
+
+        // Get the canvas elements
+        var taxrollCtx = document.getElementById('taxrollPieChart').getContext('2d');
+        var ocaCtx = document.getElementById('ocaPieChart').getContext('2d');
+
+        // Create the Taxroll pie chart
+        var taxrollPieChart = new Chart(taxrollCtx, {
+            type: 'pie',
+            data: taxrollData,
+        });
+
+        // Create the OCA pie chart
+        var ocaPieChart = new Chart(ocaCtx, {
+            type: 'pie',
+            data: ocaData,
+        });
+
+        // Function to show 3D view (you can implement your logic)
+        function show3DView() {
+            // Implement your 3D view logic here
+            alert('Showing 3D View...');
+        }
+    </script>
+</body>
+</html>

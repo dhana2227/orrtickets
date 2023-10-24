@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise New Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            border: 10px solid #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select,
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+   
+    </style>
+</head>
+<body>
+    <h2>Raise New Ticket</h2>
+    <form>
+        <label for="trackingId">Tracking ID:</label>
+        <input type="text" id="trackingId" name="trackingId" required>
+        <br>
+
+        <label for="year">Assessment Year:</label>
+        <select id="year" name="year" required>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+        </select>
+
+        <label>Location:</label>
+        <input type="radio" id="texas" name="location" value="Texas" required onclick="toggleLocation('texas')">
+        <label for="texas">Texas</label>
+        <input type="radio" id="nonTexas" name="location" value="Non-Texas" required onclick="toggleLocation('nonTexas')">
+        <label for="nonTexas">Non-Texas</label>
+        <br>
+
+        <label for="state" id="stateLabel">State:</label>
+        <select id="state" name="state">
+            <option value="Texas">Texas</option>
+            <option value="California">California</option>
+        </select>
+        <br>
+        <label for="county">County:</label>
+        <select id="county" name="county">
+            <option value="Hcad">Hcad</option>
+            <option value="Dallas">Dallas</option>
+        </select>
+        <br>
+        <label for="township" id="townshipLabel">Township:</label>
+        <select id="township" name="township">
+            <option value="Township A">Township A</option>
+            <option value="Township B">Township B</option>
+        </select>
+        <br>
+
+        <label for="requestType">Request Type:</label>
+        <select id="requestType" name="requestType">
+            <option value="Type B">Certified data</option>
+            <option value="Type C">LUC</option>
+            <option value="Type D">Property Card</option>
+            <option value="Type E">ExemptionCode</option>
+            <option value="Type G">HB 201 Evidence</option>
+            <option value="Type H">Sales</option>
+            <option value="Type I">Shape file</option>      
+            <option value="Type J">Other</option>
+        </select>
+        <label for="extraInfo" id="extraInfoLabel" style="display: none;">Request Type:Other</label>
+        <input type="text" id="extraInfo" name="extraInfo" style="display: none;">
+       
+      
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required placeholder="Enter text here..." value="O'Connor & Associates - Tracking ID - Fixed">
+        <br>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+            <option value="Very High">Very High</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+        <br>
+
+        <label for="dor"> DOR</label>
+        <input type="datetime-local" id="dor" name="dor">
+        <br>
+
+        
+
+        <button type="submit">Raise Ticket</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+
+    <script>
+        function toggleLocation(location) {
+            const stateDropdown = document.getElementById('state');
+            const stateLabel = document.getElementById('stateLabel');
+            const townshipDropdown = document.getElementById('township');
+            const townshipLabel = document.getElementById('townshipLabel');
+            
+            if (location === 'texas') {
+                stateDropdown.style.display = 'none';
+                stateLabel.style.display = 'none';
+                townshipDropdown.style.display = 'none';
+                townshipLabel.style.display = 'none';
+            } else {
+                stateDropdown.style.display = 'block';
+                stateLabel.style.display = 'block';
+                townshipDropdown.style.display = 'block';
+                townshipLabel.style.display = 'block';
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('trackingId').value = '';
+            document.getElementById('year').value = '';
+            document.getElementById('texas').checked = false;
+            document.getElementById('nonTexas').checked = false;
+            document.getElementById('state').value = 'Texas';
+            document.getElementById('township').value = '';
+            toggleLocation('texas');
+            document.getElementById('county').value = '';
+            document.getElementById('requestType').value = 'Type B';
+            document.getElementById('title').value = '';
+            document.getElementById('priority').value = 'Very High';
+            document.getElementById('dor').value = '';
+            document.getElementById('extraInfoLabel').style.display = 'none';
+            document.getElementById('extraInfo').style.display = 'none';
+        }
+        
+        document.getElementById('requestType').addEventListener('change', function () {
+            const selectedOption = this.value;
+            const extraInfoLabel = document.getElementById('extraInfoLabel');
+            const extraInfo = document.getElementById('extraInfo');
+
+            if (selectedOption === 'Type J') {
+                extraInfoLabel.style.display = 'block';
+                extraInfo.style.display = 'block';
+            } else {
+                extraInfoLabel.style.display = 'none';
+                extraInfo.style.display = 'none';
+            }
+        });
+        function generateTrackingId() {
+    const trackingId = "TRK" + Math.floor(Math.random() * 10000);
+    document.getElementById("trackingId").value = trackingId;
+    document.getElementById("autoTrackingId").textContent = trackingId;
+}
+
+// Call the function when the page loads
+generateTrackingId();
+
+    </script>
+</body>
+</html>

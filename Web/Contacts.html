@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .add-contact-form {
+            display: none;
+        }
+        .export{
+            display: inline;
+            margin-left: 90%;
+
+
+        }
+        .contact{
+            display: inline;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+      
+        <div class="col-md-3 contact">
+                <button type="button" id="addContactButton" class="btn btn-primary float-right"><i class="fas fa-user-plus"></i> Add Contact</button>
+            </div>
+        <h2>Contacts</h2>
+        <!-- Filters -->
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <label for="stateFilter">State:</label>
+                <select id="stateFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="Texas">Texas</option>
+                    <option value="California">California</option>
+                    <!-- Add more state options as needed -->
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="countyFilter">County:</label>
+                <select id="countyFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="County A">County A</option>
+                    <option value="County B">County B</option>
+                    <!-- Add more county options as needed -->
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="townFilter">Towns:</label>
+                <select id="townFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="Town A">Town A</option>
+                    <option value="Town B">Town B</option>
+                    <!-- Add more town options as needed -->
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="requestTypeFilter">Request Type:</label>
+                <select id="requestTypeFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="Type 1">Type 1</option>
+                    <option value="Type 2">Type 2</option>
+                    <!-- Add more request type options as needed -->
+                </select>
+            </div>
+            
+            
+        </div>
+
+        <!-- Add Contact Form -->
+        <div class="col-md-6 text-righ export " >
+            <button type="button" id="exportButton" class="btn btn-success"><i class="fas fa-file-export"></i> Export</button>
+        </div>
+        <div class="add-contact-form">
+            <h3>Add New Contact</h3>
+            
+            <form>
+                <div class="form-group">
+                    <label for="contactName">Contact Name:</label>
+                    <input type="text" class="form-control" id="contactName" placeholder="Enter contact name">
+                </div>
+                <div class="form-group">
+                    <label for="contactAddress">Address:</label>
+                    <input type="text" class="form-control" id="contactAddress" placeholder="Enter address">
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="text" class="form-control" id="contactNumber" placeholder="Enter contact number">
+                </div>
+                <div class="form-group">
+                    <label for="contactFax">Fax:</label>
+                    <input type="text" class="form-control" id="contactFax" placeholder="Enter fax">
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email ID:</label>
+                    <input type="email" class="form-control" id="contactEmail" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="contactWebsite">Website:</label>
+                    <input type="text" class="form-control" id="contactWebsite" placeholder="Enter website">
+                </div>
+                <button type="button" class="btn btn-success" id="saveContactButton">Save</button>
+                <button type="button" class="btn btn-secondary" id="clearContactButton">Clear</button>
+                <button type="button" class="btn btn-danger" id="cancelContactButton">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Sample Data Table -->
+        <div class="table-container">
+            <h3>Contact List</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Contact Name</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Fax</th>
+                        <th>Email ID</th>
+                        <th>Website</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample data table rows -->
+                    <tr>
+                        <td>John Doe</td>
+                        <td>123 Main St, City</td>
+                        <td>(123) 456-7890</td>
+                        <td>(123) 456-7891</td>
+                        <td>johndoe@example.com</td>
+                        <td>www.johndoe.com</td>
+                        <td><button class="btn btn-warning"><i class="fas fa-edit"></i> Edit</button></td>
+                        <td><button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button></td>
+                    </tr>
+                    <!-- Add more sample data rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Show/hide add contact form
+            $('#addContactButton').click(function () {
+                $('.add-contact-form').slideToggle();
+            });
+
+            // Save new contact
+            $('#saveContactButton').click(function () {
+                // Add your code to save the new contact to the data table
+                // You can access the input values using $('#contactName').val(), $('#contactAddress').val(), etc.
+                // After saving, update the data table and clear the form
+            });
+
+            // Clear new contact form
+            $('#clearContactButton').click(function () {
+                $('input[type="text"], input[type="email"]').val('');
+            });
+
+            // Cancel new contact
+            $('#cancelContactButton').click(function () {
+                $('.add-contact-form').slideUp();
+            });
+
+            // Delete contact (confirmation dialog)
+            $('.table tbody').on('click', '.btn-danger', function () {
+                var result = confirm('Are you sure you want to delete this contact?');
+                if (result) {
+                    // Add your code to delete the contact from the data table
+                    // After deleting, update the data table
+                }
+            });
+        });
+    </script>
+</body>
+</html>

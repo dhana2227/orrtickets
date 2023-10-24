@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <!-- Include Bootstrap CSS for table styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Add background color to the body */
+        body {
+            background-color: #f0f0f0; /* You can change the color code to your preference */
+        }
+
+        /* Add border and padding to the container */
+        .container {
+            border: 1px solid #ccc; /* Border color */
+            padding: 20px; /* Padding around the container */
+            background-color: #fff; /* Container background color */
+            border-radius: 10px; /* Rounded corners for the container */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for the container */
+        }
+        table {
+            table-layout: auto;
+        }
+
+        /* Style for table header cells */
+        th {
+            background-color: #f0f0f0; /* Header background color */
+            text-align: left; /* Align header text to the left */
+        }
+
+        /* Style for table content cells */
+        td {
+            text-align: center; /* Align content text to the left */
+        }
+        tr:hover {
+            background-color: #b4b2b2; /* Change the background color on row hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Reports</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Download</a>
+            </div>
+        </div>
+        <!-- Filters -->
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <label for="stateFilter">State:</label>
+                <select id="stateFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="Texas">Texas</option>
+                    <option value="California">California</option>
+                    <!-- Add more state options as needed -->
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="countyFilter">County:</label>
+                <select id="countyFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="County A">County A</option>
+                    <option value="County B">County B</option>
+                    <!-- Add more county options as needed -->
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="yearFilter">Year:</label>
+                <select id="yearFilter" class="form-control">
+                    <option value="">2023</option>
+                    <option value="">2022</option>
+                    <option value="">2021</option>
+                    <option value="">2020</option>
+                    <!-- Add the last 5 years dynamically using JavaScript -->
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="prelimCertifyFilter">Prelim/Certify:</label>
+                <select id="prelimCertifyFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="Prelim">Prelim</option>
+                    <option value="Certify">Certify</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <button type="button" id="applyFilterButton" class="btn btn-primary">Apply Filter</button>
+            </div>
+        </div>
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered" class="text-align">
+                <thead>
+                    <tr>
+                        <th>Select All</th>  
+                        <th>County <i class="fas fa-sort"></i></th>
+                        <th>CAD ID <i class="fas fa-sort"></i></th>
+                        <th>Township <i class="fas fa-sort"></i></th>
+                        <th>State <i class="fas fa-sort"></i></th>
+                        <th>Received Type <i class="fas fa-sort"></i></th>
+                        <th>Date Received <i class="fas fa-sort"></i></th>
+                        <th>Recently Updated Date <i class="fas fa-sort"></i></th>
+                        <th>Processing Start Date <i class="fas fa-sort"></i></th>
+                        <th>Processing End Date <i class="fas fa-sort"></i></th>
+                        <th>Server Updated Date <i class="fas fa-sort"></i></th>
+                        <th>Total Parcel <i class="fas fa-sort"></i></th>
+                        <th>Dump Parcel <i class="fas fa-sort"></i></th>
+                        <th>Values anticipated <i class="fas fa-sort"></i></th>
+                        <th>Comments <i class="fas fa-sort"></i></th>
+                        <th>Taxroll Processing <i class="fas fa-sort"></i></th>
+                        <th>Frequency of Updates <i class="fas fa-sort"></i></th>
+                        <th>FilePrep DB <i class="fas fa-sort"></i></th>
+                        <th>SPXDB <i class="fas fa-sort"></i></th>
+                        <th>AZSPXES <i class="fas fa-sort"></i></th>
+                        <th>Spartaxx Updates <i class="fas fa-sort"></i></th>
+                        <th>Shapefile <i class="fas fa-sort"></i></th>
+                        <th>Number of Updates <i class="fas fa-sort"></i></th>
+                        <th>SpartaxxActiveAccounts <i class="fas fa-sort" ></i></th>
+                        <th>Deadline <i class="fas fa-sort"></i></th>
+                        <th>Number of HB received</th>
+                        <th>Number of Sales</th>
+                        <th>Edit</th>
+                        <th>Save</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <!-- Sample data table rows -->
+                    <tr >
+                        <td><input type="radio" name="radioSelect"></td>
+                        <td>Harris</td>
+                        <td>01</td>
+                        <td >Null</td>
+                        <td>Texas</td>
+                        <td>County Download</td>
+                        <td>2023-01-15</td>
+                        <td>2023-01-20</td>
+                        <td>2023-01-21</td>
+                        <td>2023-02-10</td>
+                        <td>2023-02-15</td>
+                        <td>160000</td>
+                        <td>1400000</td>
+                        <td>1500</td>
+                        <td>Units, Grade updated from txroll 2022</td>
+                        <td>Yes</td>
+                        <td>Monthly</td>
+                        <td>Completed</td>
+                        <td>Completed</td>
+                        <td>Completed</td>
+                        <td>Completed</td>
+                        <td>Yes</td>
+                         <td>5</td>
+                         <td>150000</td>
+                         <td>2023-10-01</td>
+                         <td>350</td>
+                         <td>250000</td>
+                        <td><button class="btn btn-warning"><i class="fas fa-edit"></i> Edit</button></td>
+                        <td><button class="btn btn-success"><i class="fas fa-save"></i> Save</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="radioSelect"></td>
+                        <td>Cook</td>
+                        <td>761</td>
+                        <td>New Trier</td>
+                        <td>IL</td>
+                        <td>Manual Update</td>
+                        <td>2023-01-15</td>
+                        <td>2023-01-20</td>
+                        <td>2023-01-21</td>
+                        <td>2023-02-10</td>
+                        <td>2023-02-15</td>
+                        <td>18000</td>
+                        <td>17599</td>
+                        <td>600</td>
+                        <td>Owner address updated from txroll 2022</td>
+                        <td>Yes</td>
+                        <td>Monthly</td>
+                        <td>Completed</td>
+                        <td>Completed</td>
+                        <td>Completed</td>
+                        <td>Completed</td>
+                        <td>Yes</td>
+                         <td>5</td>
+                         <td>150000</td>
+                         <td>2023-10-01</td>
+                         <td>50</td>
+                         <td>3000</td>
+                        <td><button class="btn btn-warning"><i class="fas fa-edit"></i> Edit</button></td>
+                        <td><button class="btn btn-success"><i class="fas fa-save"></i> Save</button></td>
+                    </tr>
+                    <!-- Add more sample data rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Manual and Save buttons -->
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" id="manualButton" class="btn btn-info">Manually Update</button>
+                <button type="button" id="saveButton" class="btn btn-success">Save</button>
+            </div>
+         </div>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

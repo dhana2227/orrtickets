@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taxroll Data</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Additional Custom Styles */
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Style for filter section */
+        .filter-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Style for the search bar container */
+        .search-bar-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        /* Style for the search bar */
+        .search-bar {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-bar-container">
+            <!-- Search Bar -->
+            <input type="text" id="searchInput" class="form-control search-bar" placeholder="Search...">
+        </div>
+        <h1 class="my-4">Spartaxx Data</h1>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="stateFilter">State</label>
+                        <select id="stateFilter" class="form-control">
+                            <option value="">All</option>
+                            <option value="TX">TX</option>
+                            <option value="IL">IL</option>
+                            <!-- Add more state options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="taxYearFilter">Tax Year</label>
+                        <select id="taxYearFilter" class="form-control">
+                            <option value="">All</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <!-- Add more tax year options as needed -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+        </div>
+
+        <!-- Table Section -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>County</th>
+                    <th>State</th>
+                    <th>Spartxx Update</th>
+                    <th>Active Accounnts</th>
+                    <th>Inactive Accounnts</th>
+                    <th>LUC Active</th>
+                    <th>Township List</th>
+                    <th>Noticed Date</th>
+                    <th>Hearing Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your JavaScript code for filtering and populating the table goes here -->
+    <script>
+        // Sample data (you can replace this with your data)
+        const data = [
+            { county: 'Harris', state: 'TX', status: 'Completed', SpartxxUpdate: 'Yes', Inactive: 150000, active: 8000, LUCActive: '100-Residential VacantLand', TownshipList: 'Null' ,NoticedDate : '10-05-2023',HearingDate :'05-15-2023'},
+            { county: 'Cook', state: 'IL', status: 'Completed', SpartxxUpdate: 'No', Inactive: 5, active: 11, LUCActive: '300-Commercial VacantLand', TownshipList: 'Niles' ,NoticedDate : '09-15-2023',HearingDate :'11-15-2023'},
+            { county: 'Harris', state: 'TX', status: 'Completed', SpartxxUpdate: 'Yes', Inactive: 2, active: 10, LUCActive: '315-Hotel/Motel Low 1-4', TownshipList: 'Null' ,NoticedDate : '10-05-2023',HearingDate :'05-15-2023'},
+
+            // Add more data as needed
+        ];
+
+        // Function to populate the table with data
+        function populateTable(filteredData) {
+            const tableBody = document.querySelector('tbody');
+            tableBody.innerHTML = '';
+
+            for (const item of filteredData) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.county}</td>
+                    <td>${item.state}</td>
+                    <td>${item.SpartxxUpdate}</td>
+                    <td>${item.Inactive}</td>
+                    <td>${item.active}</td>
+                    <td>${item.LUCActive}</td>
+                    <td>${item.TownshipList}</td>
+                    <td>${item.NoticedDate}</td>
+                    <td>${item.HearingDate}</td>
+
+                `;
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Function to apply filters and update the table
+        function applyFilters() {
+            const stateFilter = document.getElementById('stateFilter').value;
+            const taxYearFilter = document.getElementById('taxYearFilter').value;
+
+            // Apply filters to the data
+            const filteredData = data.filter(item =>
+                (stateFilter === '' || item.state === stateFilter) &&
+                (taxYearFilter === '' || item.taxYear === taxYearFilter)
+            );
+
+            // Populate the table with filtered data
+            populateTable(filteredData);
+        }
+
+        // Initial population of the table
+        populateTable(data);
+    </script>
+</body>
+</html>
